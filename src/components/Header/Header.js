@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { COLORS, QUERIES, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -16,7 +16,10 @@ const Header = () => {
 
   return (
     <header>
-      <SuperHeader />
+      <DecorativeBar />
+      <SuperHeaderWrapper>
+        <SuperHeader />
+      </SuperHeaderWrapper>
       <MainHeader>
         <Side>
           <Logo />
@@ -39,6 +42,22 @@ const Header = () => {
     </header>
   );
 };
+
+const DecorativeBar = styled.div`
+  display: none;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: block;
+    background-color: ${COLORS.gray[900]};
+    height: 4px;
+  }
+`;
+
+const SuperHeaderWrapper = styled.div`
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
+  }
+`;
 
 const MainHeader = styled.div`
   display: flex;
